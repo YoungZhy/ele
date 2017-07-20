@@ -34,11 +34,11 @@
                 "description": "已加入“外卖保”计划，食品安全保障"
             }
         ],
-        "avatar": "./src/assets/avatar.jpg",
+        "avatar": "../static/images/avatar.jpg",
         "pics": [
-            "./src/assets/pic1.jpg",
-            "./src/assets/pic2.jpg",
-            "./src/assets/pic3.jpg"
+            "../static/images/pic1.jpg",
+            "../static/images/pic2.jpg",
+            "../static/images/pic3.jpg"
         ],
         "infos": [
             "该商家支持发票，请下单写好发票抬头",
@@ -66,14 +66,14 @@
                             "rateTime": 1469281964000,
                             "rateType": 0,
                             "text": "很喜欢的粥",
-                            "avatar": "./src/assets/avatar.jpg"
+                            "avatar": "../static/images/avatar.jpg"
                         },
                         {
                             "username": "2******d",
                             "rateTime": 1469281964000,
                             "rateType": 0,
                             "text": "味道不错",
-                            "avatar": "./src/assets/avatar.jpg"
+                            "avatar": "../static/images/avatar.jpg"
                         }
                     ],
                     "icon": "",
@@ -93,14 +93,14 @@
                             "rateTime": 1469281964000,
                             "rateType": 0,
                             "text": "很喜欢的粥",
-                            "avatar": "./src/assets/avatar.jpg"
+                            "avatar": "../static/images/avatar.jpg"
                         },
                         {
                             "username": "2******d",
                             "rateTime": 1469281964000,
                             "rateType": 0,
                             "text": "味道不错",
-                            "avatar": "./src/assets/avatar.jpg"
+                            "avatar": "../static/images/avatar.jpg"
                         }
                     ],
                     "icon": "",
@@ -126,14 +126,14 @@
                             "rateTime": 1469281964000,
                             "rateType": 0,
                             "text": "很喜欢的粥",
-                            "avatar": "./src/assets/avatar.jpg"
+                            "avatar": "../static/images/avatar.jpg"
                         },
                         {
                             "username": "2******d",
                             "rateTime": 1469281964000,
                             "rateType": 0,
                             "text": "味道不错",
-                            "avatar": "./src/assets/avatar.jpg"
+                            "avatar": "../static/images/avatar.jpg"
                         }
                     ],
                     "icon": "",
@@ -159,14 +159,14 @@
                             "rateTime": 1469281964000,
                             "rateType": 0,
                             "text": "很好喝",
-                            "avatar": "./src/assets/avatar.jpg"
+                            "avatar": "../static/images/avatar.jpg"
                         },
                         {
                             "username": "2******d",
                             "rateTime": 1469281964000,
                             "rateType": 0,
                             "text": "味道不错",
-                            "avatar": "./src/assets/avatar.jpg"
+                            "avatar": "../static/images/avatar.jpg"
                         }
                     ],
                     "icon": "",
@@ -183,7 +183,7 @@
             "score": 5,
             "rateType": 0,
             "text": "很好，以后经常来吃",
-            "avatar": "./src/assets/avatar.jpg",
+            "avatar": "../static/images/avatar.jpg",
             "recommend": [
                 "皮蛋瘦肉粥",
                 "南瓜粥",
@@ -198,7 +198,7 @@
             "score": 4.2,
             "rateType": 0,
             "text": "还不错，送餐时间有点久",
-            "avatar": "./src/assets/avatar.jpg",
+            "avatar": "../static/images/avatar.jpg",
             "recommend": [
                 "皮蛋瘦肉粥",
                 "南瓜粥",

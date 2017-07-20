@@ -23,6 +23,7 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var compiler = webpack(webpackConfig)
 
+
 //数据接口
 var appData = require("../data.json")
 var seller = appData.seller
@@ -50,6 +51,7 @@ apiRoutes.get("/ratings", function(req,res){
 })
 app.use("/api", apiRoutes)
 //数据接口
+
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
