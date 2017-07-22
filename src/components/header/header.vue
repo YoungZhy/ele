@@ -34,6 +34,7 @@ export default {
 
 <style lang="less">
  @import '../../common/less/base';
+ @import '../../common/less/icon';
 .header{
 	background-color: #000;
 	color: #fff;
