@@ -63,7 +63,6 @@
 				</div>
 			</div>
 		</transition>
-		<div></div>
     </div>
 </template>
 
@@ -92,7 +91,7 @@ export default {
 		this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
 	},
 	components: {
-		star
+		"star": star
 	}
 }
 </script>
@@ -246,8 +245,7 @@ export default {
 			transition: all .3s ease;
 		}
 		&.fade-enter{
-			
-			transform: translateY(-1000px);
+			transform: translateY(-800px);
 		}
 		&.fade-leave-to{
 			opacity: 0;
