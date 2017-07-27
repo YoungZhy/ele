@@ -227,7 +227,7 @@ export default {
 		width: 100%;
 		height: 100%;
 		z-index: -1;
-		filter: blur(2px);
+		filter: blur(8px);
 		overflow: hidden;
 	}
 	.detail{
