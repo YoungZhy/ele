@@ -14,7 +14,7 @@
                 <li v-for="(item, index) in goods" :key="index" class="food-list" ref="foodList">
                     <h1 class="title">{{item.name}}</h1>
                     <ul>
-                        <li v-for="(food, index) in item.foods" :key="index" class="food-item">
+                        <li v-for="(food, index) in item.foods" :key="index" class="food-item" @click="selectFood(food, $event)">
                             <div class="icon">
                                 <img :src="food.icon" width="57" height="57">
                             </div>
@@ -38,6 +38,7 @@
             </ul>
         </div>
         <shopcart ref="shopcart" :selectFoods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+        <food :food="selectedFood" ref="food"></food>
     </div>
 </template>
 
@@ -45,6 +46,7 @@
 
 import shopcart from "../shopcart/shopcart.vue"
 import cartcontrol from "../cartcontrol/cartcontrol.vue"
+import food from "../food/food.vue"
 import BScroll from 'better-scroll'
 
 const ERR_OK = 0;
@@ -59,7 +61,8 @@ export default {
         return {
             goods: [],
             listHeight: [],
-            scrollY: 0
+            scrollY: 0,
+            selectedFood: {}
         }
     },
     created(){
@@ -118,6 +121,13 @@ export default {
             this.$nextTick(() => {
                 this.$refs.shopcart.drop(target)
             })
+        },
+        selectFood(){
+            if(!event._constructed){
+                return
+            }
+            this.selectedFood = food
+            this.$refs.food.show()
         }
     },
     computed: {
@@ -145,7 +155,8 @@ export default {
     },
     components: {
         shopcart: shopcart,
-        cartcontrol: cartcontrol
+        cartcontrol: cartcontrol,
+        food: food
     }
 }
 </script>

@@ -53,8 +53,10 @@
     </div>
 </template>
 <script>
+
 import cartcontrol from "../cartcontrol/cartcontrol.vue"
 import BScroll from 'better-scroll'
+
 export default {
     props: {
         deliveryPrice: {
