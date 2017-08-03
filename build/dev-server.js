@@ -25,31 +25,31 @@ var compiler = webpack(webpackConfig)
 
 
 //数据接口
-var appData = require("../data.json")
+var appData = require('../data.json')
 var seller = appData.seller
 var goods = appData.goods
 var ratings = appData.ratings
 
 var apiRoutes = express.Router()
-apiRoutes.get("/seller", function(req,res){
+apiRoutes.get('/seller', function(req,res){
     res.json({
         errno: 0,   //实际有多种状态
         data: seller
     })
 })
-apiRoutes.get("/goods", function(req,res){
+apiRoutes.get('/goods', function(req,res){
     res.json({
         errno: 0,   
         data: goods
     })
 })
-apiRoutes.get("/ratings", function(req,res){
+apiRoutes.get('/ratings', function(req,res){
     res.json({
         errno: 0,   
         data: ratings
     })
 })
-app.use("/api", apiRoutes)
+app.use('/api', apiRoutes)
 //数据接口
 
 

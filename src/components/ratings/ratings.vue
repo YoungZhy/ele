@@ -86,7 +86,6 @@ export default {
                         click: true
                     })
                 })
-                // console.log(this.ratings)
             }
         })
     },

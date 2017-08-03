@@ -37,13 +37,12 @@ export default {
         }
 	},
 	created(){
-		this.$http.get('/api/seller').then((response) => {
-            response = response.body
-            if(response.errno === ERR_OK){
-                this.seller = Object.assign({}, this.seller, response.data)
-                // console.log(this.seller.id)
+		this.$http.get('/api/seller?id=' + this.seller.id).then((response) => {
+            response = response.body;
+            if (response.errno === ERR_OK) {
+                this.seller = Object.assign({}, this.seller, response.data);
             }
-		})
+        })
 	},
   components: {
     'v-header': header
