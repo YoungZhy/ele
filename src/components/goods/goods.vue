@@ -2,7 +2,7 @@
     <div class="goods">
         <div class="menu-wrapper" ref="menuWrapper">
             <ul>
-                <li v-for="(item, index) in goods" :key="index" class="menu-item" :class="{'current':currentIndex === index}" @click="selectMenu(index, $event)">
+                <li ref="menuList" v-for="(item, index) in goods" :key="index" class="menu-item" :class="{'current':currentIndex === index}" @click="selectMenu(index, $event)">
                     <span class="text">
                         <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>{{item.name}}
                     </span>
@@ -38,15 +38,15 @@
             </ul>
         </div>
         <shopcart ref="shopcart" :selectFoods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
-        <food :food="selectedFood" ref="food"></food>
+        <food @add="addFood" :food="selectedFood" ref="food"></food>
     </div>
 </template>
 
 <script>
 
-import shopcart from "../shopcart/shopcart.vue"
-import cartcontrol from "../cartcontrol/cartcontrol.vue"
-import food from "../food/food.vue"
+import shopcart from "components/shopcart/shopcart.vue"
+import cartcontrol from "components/cartcontrol/cartcontrol.vue"
+import food from "components/food/food.vue"
 import BScroll from 'better-scroll'
 
 const ERR_OK = 0;
@@ -71,7 +71,8 @@ export default {
             response = response.body
             if(response.errno === ERR_OK){
                 this.goods = response.data
-                // console.log(this.goods)
+                console.log(this.goods)
+                
                 this.$nextTick(() => {
                     this._initScroll()
                     this._calculateHeight()
@@ -102,8 +103,13 @@ export default {
             for(let i=0; i<foodList.length; i++){
                 let item = foodList[i]
                 height += item.clientHeight
-                this.listHeight.push(height)               
+                this.listHeight.push(height)  
             }
+        },
+        _followScroll(index){
+            let menuList = this.$refs.menuList
+            let el = menuList[index]
+            this.menuScroll.scrollToElement(el, 1000, 0, -100)
         },
         selectMenu(index, event){
             if(!event._constructed){
@@ -122,7 +128,7 @@ export default {
                 this.$refs.shopcart.drop(target)
             })
         },
-        selectFood(){
+        selectFood(food, event){
             if(!event._constructed){
                 return
             }
@@ -136,6 +142,7 @@ export default {
                 let height1 = this.listHeight[i]
                 let height2 = this.listHeight[i + 1]
                 if(!height2 || (this.scrollY >= height1 && this.scrollY < height2)){
+                    this._followScroll(i)                                                     
                     return i
                 }
             }
@@ -154,9 +161,9 @@ export default {
         }
     },
     components: {
-        shopcart: shopcart,
-        cartcontrol: cartcontrol,
-        food: food
+        shopcart,
+        cartcontrol,
+        food
     }
 }
 </script>

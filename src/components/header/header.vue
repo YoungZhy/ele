@@ -22,7 +22,7 @@
 				<i class="iconfont icon-right"></i>
 			</div>
 		</div>
-		<div class="bulletin-wrapper">
+		<div class="bulletin-wrapper" @click="showDetail">
 			<span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
 			<i class="iconfont icon-right"></i>
 		</div>
@@ -43,7 +43,7 @@
 							<div class="line"></div>
 						</div>
 						<ul v-if="seller.supports" class="supports">
-							<li class="support-item" v-for="(item, index) in seller.supports">
+							<li class="support-item" v-for="(item, index) in seller.supports" :key="index">
 								<span class="icon" :class="classMap[seller.supports[index].type]"></span>
 								<span class="text">{{seller.supports[index].description}}</span>
 							</li>
@@ -97,8 +97,7 @@ export default {
 </script>
 
 <style lang="less">
- @import '../../common/less/base.less';
- @import '../../common/fonts/iconfont.css';
+ 
 .header{
 	position: relative;
 	color: #fff;
@@ -245,7 +244,7 @@ export default {
 			transition: all .3s ease;
 		}
 		&.fade-enter{
-			transform: translateY(-800px);
+			transform: translateY(-100%);
 		}
 		&.fade-leave-to{
 			opacity: 0;

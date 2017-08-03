@@ -40,7 +40,7 @@
                                 <span>￥{{food.price * food.count}}</span>
                             </div>
                             <div class="cartcontrol-wrapper">
-                                <cartcontrol :food="food"></cartcontrol>
+                                <cartcontrol @add="addFood" :food="food"></cartcontrol>
                             </div>
                         </li>
                     </ul>
@@ -54,7 +54,7 @@
 </template>
 <script>
 
-import cartcontrol from "../cartcontrol/cartcontrol.vue"
+import cartcontrol from "components/cartcontrol/cartcontrol.vue"
 import BScroll from 'better-scroll'
 
 export default {
@@ -111,7 +111,6 @@ export default {
         },
         addFood(target){
             this.drop(target)
-            console.log('addFood')
         },
         beforeEnter(el){
             let count = this.balls.length
@@ -358,7 +357,7 @@ export default {
         
         transform: translateY(-100%);
         &.fold-enter-active, &.fold-leave-active{
-            transition: all .5s ease;
+            transition: all .3s ease;
         }
         &.fold-enter, &.fold-leave-to{
             transform: translateY(0);
@@ -423,7 +422,7 @@ export default {
         backdrop-filter: blur(10px);
         background-color: rgba(7, 17, 27, 0.6);
         &.fade-enter-active, &.fade-leave-active{
-            transition: all .5s;
+            transition: all .3s;
         }
         &.fade-enter, &.fade-leave-to{
             opacity: 0;
