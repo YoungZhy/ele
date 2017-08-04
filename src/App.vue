@@ -1,33 +1,33 @@
 <template>
-  <div id="app">
-    <v-header :seller="seller"></v-header>
-    <div class="tab">
-    	<div class="tab-item">
-    		<router-link to="/goods">商品</router-link>
-    	</div>
-    	<div class="tab-item">
-    		<router-link to="/ratings">评价</router-link>
-    	</div>
-    	<div class="tab-item">
-    		<router-link to="/seller">商家</router-link>
-    	</div>
-    </div>
-    <keep-alive>
+    <div id="app">
+        <v-header :seller="seller"></v-header>
+        <div class="tab">
+            <div class="tab-item">
+                <router-link to="/goods">商品</router-link>
+            </div>
+            <div class="tab-item">
+                <router-link to="/ratings">评价</router-link>
+            </div>
+            <div class="tab-item">
+                <router-link to="/seller">商家</router-link>
+            </div>
+        </div>
+        <keep-alive>
             <router-view :seller="seller"></router-view>
-    </keep-alive>
-  </div>
+        </keep-alive>
+    </div>
 </template>
 
 <script>
 
 import header from 'components/header/header.vue'
-import {urlParse} from 'common/js/util.js'
+import { urlParse } from 'common/js/util.js'
 
 const ERR_OK = 0
 
 export default {
-	data(){
-		return {
+    data() {
+        return {
             seller: {
                 id: (() => {
                     let queryParam = urlParse()
@@ -35,18 +35,18 @@ export default {
                 })()
             }
         }
-	},
-	created(){
-		this.$http.get('/api/seller?id=' + this.seller.id).then((response) => {
+    },
+    created() {
+        this.$http.get('/api/seller?id=' + this.seller.id).then((response) => {
             response = response.body;
             if (response.errno === ERR_OK) {
                 this.seller = Object.assign({}, this.seller, response.data);
             }
         })
-	},
-  components: {
-    'v-header': header
-  }
+    },
+    components: {
+        'v-header': header
+    }
 }
 
 </script>
@@ -56,8 +56,8 @@ export default {
 @import 'common/fonts/iconfont.css';
 @import 'common/less/swiper-3.4.2.min.css';
 @import '../static/css/reset.css';
-#app{
-    .tab{
+#app {
+    .tab {
         display: flex;
         width: 100%;
         height: 40px;
@@ -66,17 +66,15 @@ export default {
         .tab-item {
             flex: 1;
             text-align: center;
-            > a {
+            >a {
                 display: block;
                 color: #1F2D3D;
                 font-size: 14px;
-                &.active{
+                &.active {
                     color: #20A0FF;
                 }
             }
         }
     }
-    
-} 
-
+}
 </style>

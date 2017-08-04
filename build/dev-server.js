@@ -31,23 +31,23 @@ var goods = appData.goods
 var ratings = appData.ratings
 
 var apiRoutes = express.Router()
-apiRoutes.get('/seller', function(req,res){
-    res.json({
-        errno: 0,   //实际有多种状态
-        data: seller
-    })
+apiRoutes.get('/seller', function (req, res) {
+  res.json({
+    errno: 0,   //实际有多种状态
+    data: seller
+  })
 })
-apiRoutes.get('/goods', function(req,res){
-    res.json({
-        errno: 0,   
-        data: goods
-    })
+apiRoutes.get('/goods', function (req, res) {
+  res.json({
+    errno: 0,
+    data: goods
+  })
 })
-apiRoutes.get('/ratings', function(req,res){
-    res.json({
-        errno: 0,   
-        data: ratings
-    })
+apiRoutes.get('/ratings', function (req, res) {
+  res.json({
+    errno: 0,
+    data: ratings
+  })
 })
 app.use('/api', apiRoutes)
 //数据接口
@@ -59,7 +59,7 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
 })
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {
-  log: () => {}
+  log: () => { }
 })
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {
