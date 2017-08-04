@@ -9,20 +9,20 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-    	path: '/',
-    	redirect: '/goods'
+      path: '/',
+      redirect: '/goods'
     },
     {
-    	path: '/goods',
-    	component: goods
+      path: '/goods',
+      component: goods
     },
     {
-    	path: '/ratings',
-    	component: ratings
+      path: '/ratings',
+      component: ratings
     },
     {
-    	path: '/seller',
-    	component: seller
+      path: '/seller',
+      component: seller
     }
   ],
   linkActiveClass: 'active'

@@ -65,12 +65,12 @@
                         <li class="info-item" v-for="(info, index) in seller.infos" :key="index">{{info}}</li>
                     </ul>
                 </div>
-                
+    
             </div>
         </div>
         <transition name="picScale">
             <div class="pic-detail" v-show="picShow" @click="hide">
-                <div class="swiper-container"  ref="swiper">
+                <div class="swiper-container" ref="swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" v-for="(pic, index) in seller.pics" :key="index">
                             <img :src="pic" width="80%">
@@ -89,8 +89,8 @@ import Vue from 'vue'
 import BScroll from 'better-scroll'
 import star from 'components/star/star.vue'
 import split from 'components/split/split.vue'
-import {saveToLocal} from 'common/js/store.js'
-import {loadFromLocal} from 'common/js/store.js'
+import { saveToLocal } from 'common/js/store.js'
+import { loadFromLocal } from 'common/js/store.js'
 
 import Swiper from 'Swiper'
 
@@ -100,7 +100,7 @@ export default {
             type: Object
         }
     },
-    data(){
+    data() {
         return {
             favor: (() => {
                 return loadFromLocal(this.seller.id, 'favor', false)
@@ -108,19 +108,19 @@ export default {
             picShow: false
         }
     },
-    created(){
+    created() {
         this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
-        
+
     },
     watch: {
-        'seller'(){
+        'seller'() {
             this.$nextTick(() => {
                 this._initScroll()
                 this._initPics()
             })
         }
     },
-    mounted(){
+    mounted() {
         this.$nextTick(() => {
             this._initScroll()
             this._initPics()
@@ -128,55 +128,55 @@ export default {
         })
     },
     methods: {
-        _initSwiper(){
-            if(!this.swiper){
+        _initSwiper() {
+            if (!this.swiper) {
                 this.swiper = new Swiper(this.$refs.swiper, {
                     direction: 'horizontal',
                     pagination: '.swiper-pagination',
                     observer: true,  //修改swiper自己或子元素时，自动初始化swiper
                     observeParents: true  //修改swiper的父元素时，自动初始化swiper
                 })
-            }else{
+            } else {
                 this.Swiper.update()
             }
         },
-        _initScroll(){
-            if(!this.scroll){
+        _initScroll() {
+            if (!this.scroll) {
                 this.scroll = new BScroll(this.$refs.sellerWrapper, {
                     click: true
                 })
-            }else{
+            } else {
                 this.scroll.refresh()
             }
         },
-        _initPics(){
-            if(this.seller.pics){
+        _initPics() {
+            if (this.seller.pics) {
                 let picWidth = 120
                 let margin = 6
                 let width = (picWidth + margin) * this.seller.pics.length
                 this.$refs.picList.style.width = width + 'px'
                 this.$nextTick(() => {
-                    if(!this.picScroll){
+                    if (!this.picScroll) {
                         this.picScroll = new BScroll(this.$refs.picWrapper, {
                             click: true,
                             scrollX: true
                         })
-                    }else{
+                    } else {
                         this.picScroll.refresh()
                     }
                 })
 
             }
         },
-        show(index){
+        show(index) {
             this.picShow = true
             this.swiper.slideTo(index)
         },
-        hide(){
+        hide() {
             this.picShow = false
         },
-        toggleFavorite(event){
-            if(!event._constructed){
+        toggleFavorite(event) {
+            if (!event._constructed) {
                 return
             }
             this.favor = !this.favor
@@ -184,7 +184,7 @@ export default {
         }
     },
     computed: {
-        favorText(){
+        favorText() {
             return this.favor ? '已收藏' : '收藏'
         }
     },
@@ -196,34 +196,37 @@ export default {
 </script>
 
 <style lang="less">
-.seller,.seller-wrapper{
+.seller,
+.seller-wrapper {
     position: absolute;
     top: 174px;
     bottom: 0;
     left: 0;
     width: 100%;
     overflow: hidden;
-    .seller-wrapper{top: 0;}
-    .seller-content{
-        .overview{
+    .seller-wrapper {
+        top: 0;
+    }
+    .seller-content {
+        .overview {
             position: relative;
             padding: 18px;
-            .title{
+            .title {
                 margin-bottom: 8px;
                 line-height: 14px;
                 color: rgb(7, 17, 27);
                 font-size: 14px;
             }
-            .desc{
+            .desc {
                 padding-bottom: 18px;
                 border-bottom: 0.5px solid rgba(7, 17, 27, 0.1);
                 font-size: 0;
-                .star{
+                .star {
                     display: inline-block;
                     margin-right: 8px;
                     vertical-align: top;
                 }
-                .text{
+                .text {
                     display: inline-block;
                     margin-right: 12px;
                     line-height: 18px;
@@ -232,81 +235,81 @@ export default {
                     color: rgb(77, 85, 93);
                 }
             }
-            .remark{
+            .remark {
                 display: flex;
                 padding-top: 18px;
-                .block{
+                .block {
                     flex: 1;
                     text-align: center;
                     border-right: 1px solid rgba(7, 17, 27, 0.1);
-                    &:last-child{
+                    &:last-child {
                         border: none;
                     }
-                    h2{
+                    h2 {
                         margin-bottom: 4px;
                         line-height: 10px;
                         font-size: 10px;
                         color: rgb(147, 153, 159);
                     }
-                    .content{
+                    .content {
                         line-height: 24px;
                         font-size: 10px;
                         color: rgb(7, 17, 27);
-                        .stress{
+                        .stress {
                             font-size: 24px;
                         }
                     }
                 }
             }
-            .favorite{
+            .favorite {
                 position: absolute;
                 right: 12px;
                 top: 18px;
                 width: 36px;
-                text-align: center;               
-                .icon-likefill{
+                text-align: center;
+                .icon-likefill {
                     display: block;
                     margin-bottom: 4px;
                     line-height: 24px;
                     font-size: 24px;
                     color: #d4d6d9;
-                    &.active{
+                    &.active {
                         color: rgb(240, 20, 20);
                     }
                 }
-                .text{
+                .text {
                     line-height: 10px;
                     font-size: 10px;
                     color: rgb(77, 85, 93);
                 }
             }
         }
-        .bulletin{
+        .bulletin {
             padding: 18px 18px 0 18px;
-            .title{
+            .title {
                 margin-bottom: 8px;
                 line-height: 14px;
                 color: rgb(7, 17, 27);
                 font-size: 14px;
             }
-            .content-wrapper{
+            .content-wrapper {
                 padding: 0 12px 16px 12px;
                 border-bottom: 0.5px solid rgba(7, 17, 27, 0.1);
-                .content{
+                .content {
                     line-height: 24px;
                     font-size: 12px;
                     color: rgb(240, 20, 20);
                 }
             }
-            .supports{
-                .support-item{
+            .supports {
+                .support-item {
                     padding: 16px 12px;
                     border-bottom: 0.5px solid rgba(7, 17, 27, 0.1);
                     font-size: 0;
-                    &:last-child{
+                    &:last-child {
                         border: none;
                     }
-                    .icon{
+                    .icon {
                         display: inline-block;
                         width: 16px;
                         height: 16px;
@@ -314,23 +317,23 @@ export default {
                         margin-right: 6px;
                         background-size: 16px 16px;
                         background-repeat: no-repeat;
-                        &.decrease{
+                        &.decrease {
                             background-image: url(decrease.png);
                         }
-                        &.discount{
+                        &.discount {
                             background-image: url(discount.png);
                         }
-                        &.special{
+                        &.special {
                             background-image: url(special.png);
                         }
-                        &.invoice{
+                        &.invoice {
                             background-image: url(invoice.png);
                         }
-                        &.guarantee{
+                        &.guarantee {
                             background-image: url(guarantee.png);
                         }
                     }
-                    .text{
+                    .text {
                         line-height: 16px;
                         font-size: 12px;
                         color: rgb(7, 17, 27);
@@ -338,7 +341,7 @@ export default {
                 }
             }
         }
-        .pics{
+        .pics {
             padding: 18px;
             .title {
                 margin-bottom: 12px;
@@ -346,45 +349,45 @@ export default {
                 color: rgb(7, 17, 27);
                 font-size: 14px;
             }
-            .pic-wrapper{
+            .pic-wrapper {
                 width: 100%;
                 overflow: hidden;
                 white-space: nowrap;
-                .pic-list{
+                .pic-list {
                     font-size: 0;
-                    .pic-item{
+                    .pic-item {
                         display: inline-block;
                         margin-right: 6px;
                         width: 120px;
                         height: 90px;
-                        &:last-child{
+                        &:last-child {
                             margin: 0;
                         }
                     }
                 }
             }
         }
-        .info{
+        .info {
             padding: 18px 18px 0 18px;
             color: rgb(7, 17, 27);
-            .title{
+            .title {
                 padding-bottom: 12px;
                 line-height: 14px;
                 border-bottom: 1px solid rgba(7, 17, 27, 0.1);
                 font-size: 14px;
             }
-            .info-item{
+            .info-item {
                 padding: 16px 12px;
                 line-height: 16px;
                 border-bottom: 1px solid rgba(7, 17, 27, 0.1);
                 font-size: 12px;
-                &:last-child{
+                &:last-child {
                     border: none;
                 }
             }
         }
     }
-    .pic-detail{
+    .pic-detail {
         position: fixed;
         top: 0;
         left: 0;
@@ -398,32 +401,33 @@ export default {
         align-items: center;
         z-index: 5;
         transform: scale(1);
-        &.picScale-enter-active, &.picScale-leave-active{
+        &.picScale-enter-active,
+        &.picScale-leave-active {
             transition: all 0.3s ease;
         }
-        &.picScale-enter{
+        &.picScale-enter {
             transform: scale(0.5);
             opacity: 0;
         }
-        &.picScale-leave-to{
+        &.picScale-leave-to {
             opacity: 0;
         }
         .swiper-container {
             width: 90%;
             height: 80%;
             text-align: center;
-            .swiper-slide{
+            .swiper-slide {
                 display: flex;
                 justify-content: center;
                 align-items: center;
             }
-            .swiper-pagination{
-                .swiper-pagination-bullet{
+            .swiper-pagination {
+                .swiper-pagination-bullet {
                     background-color: #fff;
                     opacity: 0.5;
-                    &.swiper-pagination-bullet-active{
+                    &.swiper-pagination-bullet-active {
                         opacity: 1;
-                        background-color: rgb(0,160,220);
+                        background-color: rgb(0, 160, 220);
                     }
                 }
             }

@@ -5,7 +5,7 @@
                 <i class="iconfont icon-jian-copy inner"></i>
             </div>
         </transition>
-         <div class="cart-count" v-show="food.count > 0">{{food.count}}</div>  
+        <div class="cart-count" v-show="food.count > 0">{{food.count}}</div>
         <div class="cart-add" @click.stop.prevent="addCart($event)">
             <i class="iconfont icon-roundaddfill"></i>
         </div>
@@ -16,33 +16,33 @@ import Vue from 'vue'
 
 export default {
     props: {
-        food:{
+        food: {
             type: Object
         }
     },
-    created(){
+    created() {
 
     },
     methods: {
-        addCart(event){
+        addCart(event) {
             console.log(event.target)
-            if(!event._constructed){
+            if (!event._constructed) {
                 return
             }
-            if(!this.food.count){
+            if (!this.food.count) {
                 Vue.set(this.food, 'count', 1)
                 // this.food.count = 1
-            }else{
+            } else {
                 this.food.count++
             }
             this.$emit('add', event.target)
 
         },
-        decreaseCart(event){
-            if(!event._constructed){
+        decreaseCart(event) {
+            if (!event._constructed) {
                 return
             }
-            if(this.food.count){
+            if (this.food.count) {
                 this.food.count--
             }
         }
@@ -50,14 +50,14 @@ export default {
 }
 </script>
 <style lang="less">
-.cartcontrol{
+.cartcontrol {
     font-size: 0;
-    .cart-decrease{
+    .cart-decrease {
         display: inline-block;
         padding: 6px;
         opacity: 1;
         transform: translateX(0);
-        .inner{
+        .inner {
             display: inline-block;
             font-size: 22px;
             line-height: 22px;
@@ -65,18 +65,20 @@ export default {
             transition: all .4s ease;
             transform: scale(1);
         }
-        &.move-enter-active, &.move-leave-active{
+        &.move-enter-active,
+        &.move-leave-active {
             transition: all .4s ease;
         }
-        &.move-enter, &.move-leave-active{
+        &.move-enter,
+        &.move-leave-active {
             opacity: 0;
             transform: translateX(24px);
-            .inner{
+            .inner {
                 transform: scale(0);
             }
         }
     }
-    .cart-count{
+    .cart-count {
         display: inline-block;
         vertical-align: top;
         width: 12px;
@@ -86,10 +88,10 @@ export default {
         font-size: 10px;
         color: rgb(147, 153, 159);
     }
-    .cart-add{
+    .cart-add {
         display: inline-block;
         padding: 6px;
-        .icon-roundaddfill{
+        .icon-roundaddfill {
             display: inline-block;
             font-size: 22px;
             line-height: 22px;

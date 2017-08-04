@@ -1,7 +1,7 @@
 <template>
     <transition name="move">
         <div class="food" v-show="showFlag" ref="food">
-            
+    
             <div class="food-content">
                 <div class="img-header">
                     <img :src="food.image">
@@ -13,7 +13,8 @@
                         <span class="rating">好评率{{food.rating}}%</span>
                     </div>
                     <div class="price">
-                        <span class="now">￥{{food.price}}</span><span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
+                        <span class="now">￥{{food.price}}</span>
+                        <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
                     </div>
                     <div class="cartcontrol-wrapper">
                         <cartcontrol @add="addFood" :food="food"></cartcontrol>
@@ -30,7 +31,7 @@
                 <split></split>
                 <div class="rating">
                     <h1 class="title">商品评价</h1>
-                    <ratingselect @select="selectRating" @toggle="toggleContent" :selectType="selectType" :onlyContent="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>                    
+                    <ratingselect @select="selectRating" @toggle="toggleContent" :selectType="selectType" :onlyContent="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
                     <div class="rating-wrapper">
                         <ul v-show="food.ratings && food.ratings.length">
                             <li v-show="needShow(rating.rateType, rating.text)" v-for="(rating, index) in food.ratings" :key="index" class="rating-item">
@@ -62,7 +63,7 @@ import cartcontrol from 'components/cartcontrol/cartcontrol.vue'
 import ratingselect from 'components/ratingselect/ratingselect.vue'
 import split from 'components/split/split.vue'
 import Vue from 'vue'
-import {formatDate} from 'common/js/date.js'
+import { formatDate } from 'common/js/date.js'
 
 const POSITIVE = 0
 const NEGATIVE = 1
@@ -74,7 +75,7 @@ export default {
             type: Object
         }
     },
-    data(){
+    data() {
         return {
             showFlag: false,
             selectType: ALL,
@@ -86,55 +87,55 @@ export default {
             }
         }
     },
-    created(){
-        
+    created() {
+
     },
     methods: {
-        show(){
+        show() {
             this.showFlag = true
             this.selectType = ALL
             this.onlyContent = true
             this.$nextTick(() => {
-                if(!this.scroll){
+                if (!this.scroll) {
                     this.scroll = new BScroll(this.$refs.food, {
                         click: true
                     })
-                }else{
+                } else {
                     this.scroll.refresh()
                 }
             })
         },
-        hide(){
+        hide() {
             this.showFlag = false
         },
-        addFirst(event){
-            
-            if(!event._constructed){
+        addFirst(event) {
+
+            if (!event._constructed) {
                 return
             }
             this.$emit('add', event.target)
             Vue.set(this.food, 'count', 1)
         },
-        addFood(target){
+        addFood(target) {
             this.$emit('add', target)
         },
-        needShow(type, text){
-            if(this.onlyContent && !text){
+        needShow(type, text) {
+            if (this.onlyContent && !text) {
                 return false
             }
-            if(this.selectType === ALL){
+            if (this.selectType === ALL) {
                 return true
-            }else{
+            } else {
                 return type === this.selectType
             }
         },
-        selectRating(type){
+        selectRating(type) {
             this.selectType = type
             this.$nextTick(() => {
                 this.scroll.refresh()
             })
         },
-        toggleContent(){
+        toggleContent() {
             this.onlyContent = !this.onlyContent
             this.$nextTick(() => {
                 this.scroll.refresh()
@@ -142,8 +143,8 @@ export default {
         },
     },
     filters: {
-        formatDate(time){
-            let date  = new Date(time)
+        formatDate(time) {
+            let date = new Date(time)
             return formatDate(date, 'yyyy-MM-dd hh:mm')
         }
     },
@@ -155,7 +156,7 @@ export default {
 }
 </script>
 <style lang="less">
-.food{
+.food {
     position: fixed;
     top: 0;
     bottom: 48px;
@@ -164,87 +165,86 @@ export default {
     background-color: #fff;
     transform: translateX(0);
     opacity: 1;
-    &.move-enter-active, &.move-leave-active{
+    &.move-enter-active,
+    &.move-leave-active {
         transition: all .3s ease;
         opacity: 1;
     }
-    &.move-enter, &.move-leave-to{
+    &.move-enter,
+    &.move-leave-to {
         opacity: 0;
         transform: translateX(100%);
     }
-    .back{
+    .back {
         position: fixed;
         top: 10px;
         left: 10px;
-        background-color: rgba(7,17,27,0.4);
+        background-color: rgba(7, 17, 27, 0.4);
         border-radius: 50%;
-        .icon-back{
+        .icon-back {
             display: inline-block;
             padding: 6px;
             color: #fff;
             font-size: 26px;
-            
         }
-    }
-    
-    // 异步加载图片，固定大小
-    .img-header{
+    } // 异步加载图片，固定大小
+    .img-header {
         position: relative;
         width: 100%;
         height: 0;
-        padding-top: 100%;  // 按width比例
-        img{
+        padding-top: 100%; // 按width比例
+        img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
         }
-        
     }
-    .content{
+    .content {
         position: relative;
         padding: 18px;
-        .title{
+        .title {
             font-size: 14px;
             line-height: 14px;
             margin-bottom: 8px;
             font-weight: 700;
-            color: rbg(7,17,27);
+            color: rbg(7, 17, 27);
         }
-        .detail{
+        .detail {
             font-size: 0;
             line-height: 10px;
             margin-bottom: 18px;
             height: 10px;
-            .sell-count, .rating{
+            .sell-count,
+            .rating {
                 font-size: 10px;
-                color: rgb(147,153,159);
+                color: rgb(147, 153, 159);
             }
-            .sell-count{
+            .sell-count {
                 margin-right: 12px;
             }
         }
-        .price{
+        .price {
             font-weight: 700;
             line-height: 24px;
-            .now{
+            .now {
                 margin-right: 8px;
                 font-size: 14px;
                 color: rgb(240, 20, 20);
             }
-            .old{
+            .old {
                 text-decoration: line-through;
                 font-size: 10px;
                 color: rgb(147, 153, 159);
             }
         }
-        .cartcontrol-wrapper{
-        position: absolute;
-        right: 12px;
-        bottom: 12px;
+        .cartcontrol-wrapper {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
         }
-        .buy{
+        .buy {
             position: absolute;
             right: 18px;
             bottom: 18px;
@@ -257,91 +257,93 @@ export default {
             border-radius: 12px;
             color: #fff;
             background-color: rgb(0, 160, 220);
-            &.fade-enter-actice, &.fade-leave-active{
+            &.fade-enter-actice,
+            &.fade-leave-active {
                 transition: all 0.2s;
                 opacity: 1;
             }
-            &.fade-enter, &.fade-leave-to{
+            &.fade-enter,
+            &.fade-leave-to {
                 opacity: 0;
             }
         }
     }
-    .info{
+    .info {
         padding: 18px;
-        .title{
+        .title {
             font-size: 14px;
             margin-bottom: 6px;
             line-height: 14px;
-            color: rgb(7,17,27);
+            color: rgb(7, 17, 27);
         }
-        .text{
+        .text {
             font-size: 12px;
             line-height: 24px;
             padding: 0 8px;
             color: rgb(77, 85, 93);
         }
     }
-    .rating{
+    .rating {
         padding-top: 18px;
-        .title{
+        .title {
             font-size: 14px;
             margin-left: 18px;
             line-height: 14px;
-            color: rgb(7,17,27);
+            color: rgb(7, 17, 27);
         }
-        .rating-wrapper{
+        .rating-wrapper {
             padding: 0 18px;
-            .rating-item{
+            .rating-item {
                 position: relative;
                 padding: 16px 0;
-                border-bottom: 0.5px solid rgba(7,17,27,0.1);
-                .user{
+                border-bottom: 0.5px solid rgba(7, 17, 27, 0.1);
+                .user {
                     position: absolute;
                     right: 0;
                     top: 16px;
                     font-size: 0;
                     line-height: 12px;
-                    .name{
+                    .name {
                         display: inline-block;
                         margin-right: 6px;
                         vertical-align: top;
                         font-size: 10px;
-                        color: rgb(147,153,159);
+                        color: rgb(147, 153, 159);
                     }
-                    .avatar{
+                    .avatar {
                         border-radius: 50%;
                     }
                 }
-                .time{
+                .time {
                     margin-bottom: 6px;
                     line-height: 12px;
                     font-size: 10px;
-                    color: rgb(147,153,159);
+                    color: rgb(147, 153, 159);
                 }
-                .text{
+                .text {
                     font-size: 12px;
                     line-height: 16px;
-                    color: rgb(7,17,27);
-                    .icon-thumbdown, .icon-thumb_up{
+                    color: rgb(7, 17, 27);
+                    .icon-thumbdown,
+                    .icon-thumb_up {
                         margin-right: 4px;
                         line-height: 16px;
                         font-size: 12px;
                     }
-                    .icon-thumb_up{
+                    .icon-thumb_up {
                         color: rgb(0, 160, 220);
                     }
-                    .icon-thumbdown{
-                        color: rgb(147,153,159);
+                    .icon-thumbdown {
+                        color: rgb(147, 153, 159);
                     }
                 }
             }
-            .no-rating{
+            .no-rating {
                 padding: 16px 0;
                 font-size: 12px;
-                color: rgb(147,153,159);
+                color: rgb(147, 153, 159);
             }
         }
     }
-    
 }
 </style>

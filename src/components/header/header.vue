@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+	<div class="header">
 		<div class="content-wrapper">
 			<div class="avatar">
 				<img :src="seller.avatar" alt="" width="64" height="64">
@@ -23,7 +23,8 @@
 			</div>
 		</div>
 		<div class="bulletin-wrapper" @click="showDetail">
-			<span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
+			<span class="bulletin-title"></span>
+			<span class="bulletin-text">{{seller.bulletin}}</span>
 			<i class="iconfont icon-right"></i>
 		</div>
 		<div class="background">
@@ -63,7 +64,7 @@
 				</div>
 			</div>
 		</transition>
-    </div>
+	</div>
 </template>
 
 <script>
@@ -74,20 +75,20 @@ export default {
 			type: Object
 		}
 	},
-	data(){
+	data() {
 		return {
 			detailShow: false
 		}
 	},
 	methods: {
-		showDetail(){
+		showDetail() {
 			this.detailShow = true;
 		},
-		hideDetail(){
+		hideDetail() {
 			this.detailShow = false;
 		}
 	},
-	created(){
+	created() {
 		this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
 	},
 	components: {
@@ -97,29 +98,29 @@ export default {
 </script>
 
 <style lang="less">
- 
-.header{
+.header {
 	position: relative;
 	color: #fff;
 	background-color: rgba(7, 17, 27, 0.5);
 	overflow: hidden;
-	.content-wrapper{
+	.content-wrapper {
 		position: relative;
 		padding: 24px 12px 18px 24px;
-		font-size: 0;	/*并列元素有换行空格产生的空隙，父元素fz=0，子元素要设fz*/
-		.avatar{
+		font-size: 0;
+		/*并列元素有换行空格产生的空隙，父元素fz=0，子元素要设fz*/
+		.avatar {
 			display: inline-block;
 			vertical-align: top;
-			img{
+			img {
 				border-radius: 2px;
 			}
 		}
-		.content{
+		.content {
 			display: inline-block;
 			margin-left: 16px;
-			.title{
+			.title {
 				margin: 2px 0 8px 0;
-				.brand{
+				.brand {
 					width: 30px;
 					height: 18px;
 					display: inline-block;
@@ -128,20 +129,20 @@ export default {
 					vertical-align: top;
 					border-radius: 2px;
 				}
-				.name{
+				.name {
 					margin-left: 6px;
 					font-size: 16px;
 					line-height: 18px;
 					font-weight: bold;
 				}
 			}
-			.description{
+			.description {
 				margin-bottom: 10px;
 				line-height: 12px;
 				font-size: 12px;
 			}
-			.support{
-				.icon{
+			.support {
+				.icon {
 					display: inline-block;
 					width: 12px;
 					height: 12px;
@@ -149,29 +150,29 @@ export default {
 					background-size: 12px 12px;
 					background-repeat: no-repeat;
 					vertical-align: top;
-					&.decrease{
+					&.decrease {
 						background-image: url(decrease.png);
 					}
-					&.discount{
+					&.discount {
 						background-image: url(discount.png);
 					}
-					&.special{
+					&.special {
 						background-image: url(special.png);
 					}
-					&.invoice{
+					&.invoice {
 						background-image: url(invoice.png);
 					}
-					&.guarantee{
+					&.guarantee {
 						background-image: url(guarantee.png);
 					}
 				}
-				.text{
+				.text {
 					line-height: 12px;
 					font-size: 10px;
 				}
 			}
 		}
-		.support-count{
+		.support-count {
 			position: absolute;
 			right: 12px;
 			bottom: 18px;
@@ -181,45 +182,45 @@ export default {
 			border-radius: 14px;
 			background-color: rgba(0, 0, 0, 0.2);
 			text-align: center;
-			.count{
+			.count {
 				font-size: 10px;
 				vertical-align: top;
 			}
-			.icon-right{
+			.icon-right {
 				font-size: 10px;
 				margin-left: 2px;
 			}
 		}
 	}
-	.bulletin-wrapper{
+	.bulletin-wrapper {
 		position: relative;
 		background-color: rgba(7, 17, 24, 0.2);
 		height: 28px;
 		line-height: 28px;
-		padding: 0 22px 0 12px; 
+		padding: 0 22px 0 12px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		.bulletin-title{
+		.bulletin-title {
 			display: inline-block;
 			width: 22px;
 			height: 12px;
 			background: url(bulletin.png) no-repeat;
 			background-size: 22px 12px;
 		}
-		.bulletin-text{
+		.bulletin-text {
 			vertical-align: top;
 			margin: 0 4px;
 			font-size: 10px;
 		}
-		.icon-right{
+		.icon-right {
 			position: absolute;
 			right: 12px;
 			top: 0px;
 			font-size: 10px;
 		}
 	}
-	.background{
+	.background {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -229,7 +230,7 @@ export default {
 		filter: blur(8px);
 		overflow: hidden;
 	}
-	.detail{
+	.detail {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -240,60 +241,61 @@ export default {
 		-webkit-backdrop-filter: blur(10px);
 		background: rgba(7, 17, 27, 0.8);
 		opacity: 1;
-		&.fade-enter-active,&.fade-leave-active{
+		&.fade-enter-active,
+		&.fade-leave-active {
 			transition: all .3s ease;
 		}
-		&.fade-enter{
+		&.fade-enter {
 			transform: translateY(-100%);
 		}
-		&.fade-leave-to{
+		&.fade-leave-to {
 			opacity: 0;
 			background: rgba(7, 17, 27, 0);
 		}
-		.detail-wrapper{
+		.detail-wrapper {
 			min-height: 100%;
 			width: 100%;
-			.detail-main{
+			.detail-main {
 				margin-top: 64px;
-				padding-bottom: 64px; 
-				.name{
+				padding-bottom: 64px;
+				.name {
 					text-align: center;
 					line-height: 16px;
 					font-size: 16px;
 					font-weight: 700;
 				}
-				.star-wrapper{
+				.star-wrapper {
 					margin-top: 18px;
 					padding: 2px 0;
 					text-align: center;
 				}
-				.title{
+				.title {
 					display: flex;
 					width: 80%;
 					margin: 28px auto 24px auto;
-					.line{
+					.line {
 						flex: 1;
 						position: relative;
 						top: -6px;
 						border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 					}
-					.text{
+					.text {
 						padding: 0 12px;
 						font-size: 14px;
 						font-weight: 700;
 					}
 				}
-				.supports{
+				.supports {
 					width: 80%;
 					margin: 0 auto;
-					.support-item{
+					.support-item {
 						padding: 0 12px;
 						margin-bottom: 12px;
 						font-size: 0;
-						&:last-child{
+						&:last-child {
 							margin-bottom: 0;
 						}
-						.icon{
+						.icon {
 							display: inline-block;
 							width: 16px;
 							height: 16px;
@@ -301,32 +303,32 @@ export default {
 							margin-right: 6px;
 							background-size: 16px 16px;
 							background-repeat: no-repeat;
-							&.decrease{
+							&.decrease {
 								background-image: url(decrease.png);
 							}
-							&.discount{
+							&.discount {
 								background-image: url(discount.png);
 							}
-							&.special{
+							&.special {
 								background-image: url(special.png);
 							}
-							&.invoice{
+							&.invoice {
 								background-image: url(invoice.png);
 							}
-							&.guarantee{
+							&.guarantee {
 								background-image: url(guarantee.png);
 							}
 						}
-						.text{
+						.text {
 							line-height: 16px;
 							font-size: 12px;
 						}
 					}
 				}
-				.bulletin{
+				.bulletin {
 					width: 80%;
 					margin: 0 auto;
-					.content{
+					.content {
 						padding: 0 12px;
 						font-size: 12px;
 						line-height: 24px;
@@ -334,13 +336,13 @@ export default {
 				}
 			}
 		}
-		.detail-close{
+		.detail-close {
 			position: relative;
 			width: 32px;
 			height: 32px;
 			margin: -64px auto;
 			clear: both;
-			.icon-close{
+			.icon-close {
 				font-size: 30px;
 			}
 		}

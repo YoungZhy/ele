@@ -55,7 +55,7 @@
 <script>
 
 import BScroll from 'better-scroll'
-import {formatDate} from 'common/js/date.js'
+import { formatDate } from 'common/js/date.js'
 import star from 'components/star/star.vue'
 import split from 'components/split/split.vue'
 import ratingselect from 'components/ratingselect/ratingselect.vue'
@@ -69,17 +69,17 @@ export default {
             type: Object
         }
     },
-    data(){
+    data() {
         return {
             ratings: [],
             selectType: ALL,
             onlyContent: true
         }
     },
-    created(){
+    created() {
         this.$http.get('/api/ratings').then((response) => {
             response = response.body
-            if(response.errno === ERR_OK){
+            if (response.errno === ERR_OK) {
                 this.ratings = response.data
                 this.$nextTick(() => {
                     this.scroll = new BScroll(this.$refs.ratings, {
@@ -90,34 +90,34 @@ export default {
         })
     },
     methods: {
-        selectRating(type){
+        selectRating(type) {
             this.selectType = type
             this.$nextTick(() => {
                 this.scroll.refresh()
             })
         },
-        toggleContent(){
+        toggleContent() {
             this.onlyContent = !this.onlyContent
             this.$nextTick(() => {
                 this.scroll.refresh()
             })
         },
-        needShow(type, text){
-            if(this.onlyContent && !text){
+        needShow(type, text) {
+            if (this.onlyContent && !text) {
                 return false
             }
-            if(this.selectType === ALL){
+            if (this.selectType === ALL) {
                 return true
-            }else{
+            } else {
                 return type === this.selectType
             }
         }
     },
     filters: {
-      formatDate(time) {
-        let date = new Date(time);
-        return formatDate(date, 'yyyy-MM-dd hh:mm');
-      }
+        formatDate(time) {
+            let date = new Date(time);
+            return formatDate(date, 'yyyy-MM-dd hh:mm');
+        }
     },
     components: {
         star,
@@ -128,119 +128,119 @@ export default {
 </script>
 
 <style lang="less">
-.ratings{
+.ratings {
     position: absolute;
     top: 174px;
     bottom: 0;
     left: 0;
     width: 100%;
     overflow: hidden;
-    .overview{
+    .overview {
         display: flex;
         padding: 18px 0;
-        .overview-left{
+        .overview-left {
             flex: 0 0 137px;
             width: 137px;
-            border-right: 1px solid rgba(7,17,27,0.1);
+            border-right: 1px solid rgba(7, 17, 27, 0.1);
             text-align: center;
-            @media screen and (max-width: 320px){
+            @media screen and (max-width: 320px) {
                 flex: 0 0 120px;
                 width: 120px;
             }
-            .score{
+            .score {
                 margin-bottom: 6px;
                 line-height: 28px;
                 font-size: 24px;
-                color: rgb(255,153,0);
+                color: rgb(255, 153, 0);
             }
-            .title{
+            .title {
                 margin-bottom: 8px;
                 line-height: 12px;
                 font-size: 12px;
-                color: rgb(7,17,27);
+                color: rgb(7, 17, 27);
             }
-            .rank{
+            .rank {
                 line-height: 10px;
                 font-size: 10px;
-                color: rgb(142,157,159);
+                color: rgb(142, 157, 159);
             }
         }
-        .overview-right{
+        .overview-right {
             flex: 1;
             padding: 6px 0 6px 24px;
-            @media screen and (max-width: 320px){
+            @media screen and (max-width: 320px) {
                 padding-left: 6px;
             }
-            .score-wrapper{
+            .score-wrapper {
                 margin-bottom: 8px;
                 font-size: 0;
-                .title{
+                .title {
                     display: inline-block;
                     line-height: 18px;
                     vertical-align: top;
                     font-size: 12px;
-                    color: rgb(7,17,27);
+                    color: rgb(7, 17, 27);
                 }
-                .star{
+                .star {
                     display: inline-block;
                     vertical-align: top;
                     margin: 0 12px;
                 }
-                .score{
+                .score {
                     display: inline-block;
                     line-height: 18px;
                     vertical-align: top;
                     font-size: 12px;
-                    color: rgb(255,153,0);
+                    color: rgb(255, 153, 0);
                 }
             }
-            .delivery-wrapper{
+            .delivery-wrapper {
                 font-size: 0;
-                .title{
+                .title {
                     line-height: 18px;
                     font-size: 12px;
                     color: rgb(7, 17, 27);
                 }
-                .delivery{
+                .delivery {
                     margin-left: 12px;
-                font-size: 12px;
-                color: rgb(147, 153, 159);
+                    font-size: 12px;
+                    color: rgb(147, 153, 159);
                 }
             }
         }
     }
-    .rating-wrapper{
+    .rating-wrapper {
         padding: 0 18px;
-        .rating-item{
+        .rating-item {
             display: flex;
             padding: 18px 0;
             border-bottom: 0.5px solid rgba(7, 17, 27, 0.1);
-            .avatar{
+            .avatar {
                 flex: 0 0 28px;
                 width: 28px;
                 margin-right: 12px;
-                img{
+                img {
                     border-radius: 50%;
                 }
             }
-            .content{
+            .content {
                 position: relative;
                 flex: 1;
-                .name{
+                .name {
                     margin-bottom: 4px;
                     line-height: 12px;
                     font-size: 10px;
-                    color: rgb(7,17,27);
+                    color: rgb(7, 17, 27);
                 }
-                .star-wrapper{
+                .star-wrapper {
                     margin-bottom: 6px;
                     font-size: 0;
-                    .star{
+                    .star {
                         display: inline-block;
                         margin-right: 6px;
                         vertical-align: top;
                     }
-                    .delivery{
+                    .delivery {
                         display: inline-block;
                         vertical-align: top;
                         line-height: 12px;
@@ -248,24 +248,25 @@ export default {
                         color: rgb(147, 153, 159);
                     }
                 }
-                .text{
+                .text {
                     margin-bottom: 8px;
                     line-height: 18px;
                     color: rgb(7, 17, 27);
                     font-size: 12px;
                 }
-                .recommend{
+                .recommend {
                     line-height: 16px;
                     font-size: 0;
-                    .icon-thumb_up, .item{
+                    .icon-thumb_up,
+                    .item {
                         display: inline-block;
                         margin: 0 8px 4px 0;
                         font-size: 9px;
                     }
-                    .icon-thumb_up{
-                        color: rgb(0,160,220);
+                    .icon-thumb_up {
+                        color: rgb(0, 160, 220);
                     }
-                    .item{
+                    .item {
                         padding: 0 6px;
                         border: 1px solid rgba(7, 17, 27, 0.1);
                         border-radius: 1px;
@@ -273,7 +274,7 @@ export default {
                         background: #fff;
                     }
                 }
-                .time{
+                .time {
                     position: absolute;
                     top: 0;
                     right: 0;
