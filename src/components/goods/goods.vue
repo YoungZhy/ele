@@ -72,8 +72,6 @@ export default {
             response = response.body
             if (response.errno === ERR_OK) {
                 this.goods = response.data
-                console.log(this.goods)
-
                 this.$nextTick(() => {
                     this._initScroll()
                     this._calculateHeight()
