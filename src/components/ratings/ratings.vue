@@ -75,7 +75,7 @@ export default {
     }
   },
   created() {
-    this.$http.get('/static/data.json').then((response) => {
+    this.$http.get('static/data.json').then((response) => {
       this.ratings = response.body.ratings
       this.$nextTick(() => {
         this.scroll = new BScroll(this.$refs.ratings, {

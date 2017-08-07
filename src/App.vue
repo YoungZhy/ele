@@ -44,7 +44,7 @@ export default {
     //     this.seller = Object.assign({}, this.seller, response.data);
     //   }
     // })
-    this.$http.get('/static/data.json').then((response) => {
+    this.$http.get('static/data.json').then((response) => {
       this.seller = response.body.seller
     })
   },
