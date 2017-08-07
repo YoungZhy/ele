@@ -8,14 +8,15 @@
  
 ## Preview
 
-> For desktop
+### For desktop
 
 [Click this!](https://youngzhy.github.io/ele-sell/)
  
-> For mobile
+### For mobile
 
 Scanning this QR!
-![image](qr.api.cli.im/qr?data=https://youngzhy.github.io/ele-sell/&level=H&transparent=false&bgcolor=#ffffff&forecolor=#000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=dfa55f09715b2f460702a35f4f6418d0)
+
+![image](http://qr.api.cli.im/qr?data=http%3A%2F%2Fqr10.cn%2FFHtoWM&level=H&transparent=&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=220&kid=cliim&key=ead76bd9a057bd01524c83226bcd18be)
 
 ## Build Setup
 
