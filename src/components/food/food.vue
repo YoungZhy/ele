@@ -150,6 +150,7 @@ export default {
   }
 }
 </script>
+
 <style lang="less">
 .food {
   position: fixed;
@@ -182,7 +183,8 @@ export default {
       color: #fff;
       font-size: 26px;
     }
-  } // 异步加载图片，固定大小
+  } 
+  // 异步加载图片，固定大小
   .img-header {
     position: relative;
     width: 100%;
